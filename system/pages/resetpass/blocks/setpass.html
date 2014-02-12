@@ -1,0 +1,51 @@
+<style>
+    #register .well{
+        margin-top: 10px;
+        font-size: 80%;
+    }
+    
+    #register label{
+        width: 125px;
+        text-align: right;
+        font-weight: bold;
+    }
+</style>
+<div id="register">
+    <form class="form-inline" id="formcontrol" action="{root_doc}resetpass/complete/submit" method="post">
+        <legend>Select New Password</legend>
+        <input type="hidden" name="key" value="{key}">
+        <div class="control-group">
+            <label class="control-label" for="pass1">Password:</label>
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span><input class="input-large" placeholder="Password" id="pass1" type="password" name="pass1">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="pass2">Confirm Password:</label>
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span><input class="input-large" placeholder="Password" id="pass2" type="password" name="pass2">
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-actions">
+            <a class="btn btn-info" onclick="checkpass()">Set Password</a> <a class="btn btn-warning" href="{root_doc}">Cancel</a> <br />
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#pageform").validate();
+    });
+    function checkpass(){
+        if($('#pass1').val() == ''){
+            $.jGrowl("Password can not be blank", { life: 3000, speed:  'slow' });
+        }else{
+            if( $('#pass1').val() == $('#pass2').val() ){
+                $('#formcontrol').submit();
+                $.jGrowl("Good", { life: 3000, speed:  'slow' });
+            }else{
+                $.jGrowl("Passwords do not match", { life: 3000, speed:  'slow' });
+            }
+        }
+    }
+</script>

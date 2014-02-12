@@ -1,0 +1,31 @@
+<h3>Warning! This will wipe out any old sites stored on this database.</h3>
+<div id="install-form" style="{hideform}">
+    <h5>Create first user for install:</h5>
+    <form style="{hideform}" class="form-inline" id="formcontrol" action="/install" method="post">
+        <input type="hidden" name="install" value="doit">
+        <div class="control-group">
+            <label for="email">Email:</label> 
+            <div class="input-prepend">
+                <span class="add-on">@</span><input class="input required" maxchar="80" size="20" type="text" id="email" name="email">
+            </div>
+            <div class="well">Must be valid, this will be your super user account.</div>
+        </div>
+        <div class="control-group"> 
+            <label for="name">User Name:</label> 
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-globe"></i></span><input class="input required" maxchar="40" size="20" type="text" id="name" name="name">
+            </div>
+            <div class="well">Name that will be shown in your profile.</div>
+        </div>
+        <div class="control-group">
+            <label for="password">Password:</label> 
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span><input class="input required" maxchar="40" size="20" type="password" id="password" name="password"> 
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-actions">
+            <input class="btn btn-info" type="submit" value="&nbsp;&nbsp;Install Temporal Database&nbsp;&nbsp;"> <br />
+        </div>
+    </form>
+</div>

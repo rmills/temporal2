@@ -1,0 +1,15 @@
+/* Global */
+body{
+    font-family: "Open Sans", sans;
+    color: #333333;
+    font-size: 1em;
+    line-height: 1.3em;
+    letter-spacing: 1px;
+    white-space: normal;
+    background-color: #f7f7f7;
+}
+
+.container, .container-fluid{
+    background-color: #fff;
+}
+

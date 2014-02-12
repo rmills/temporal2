@@ -1,0 +1,46 @@
+{status}
+<style>
+    #users-form .error{
+        color: #FF0000;
+    }
+    
+    #users-form .well{
+        margin-top: 10px;
+        font-size: 80%;
+    }
+    #profile {
+        width: 500px;
+        margin: 0 auto;
+        border: 1px #F5F5F5 solid;
+        padding: 15px;
+    }
+</style>
+<div id="profile">
+<form class="form-horizontal" id="editprofile" action="{root_doc}profile/edit/submit" method="post" enctype="multipart/form-data">
+    <legend>Edit Profile</legend>
+    <div class="control-group">
+        <label for="email">Email: </label>
+        <input class="input required email" size="20" type="text" id="email" name="email" placeholder="Email Address" value="{setemail}">
+        <p>&nbsp;</p>
+        <div class="well">*this will be your login</div>
+    </div>
+    <div class="control-group">
+        <label for="name">Full Name: </label>
+        <input class="input required" size="20" type="text" id="name" placeholder="Full Name" name="name" value="{setname}">
+    </div>
+    <p>&nbsp;</p>
+    {modules}
+    <div class="form-actions">
+        <input class="btn btn-info" type="submit" value="Update Profile">
+        <a class="btn btn-warning" href="{root_doc}">Cancel</a> 
+    </div>
+</form>
+</div>
+<script type="text/javascript" src="{root_doc}system/inc/js/jquery.validate.js"></script>
+<script type="text/javascript" src="{root_doc}system/inc/js/jquery.validate-additional-methods.js"></script>
+<script type="text/javascript" src="{root_doc}system/inc/js/jquery.validate-custom-addon.js"></script>
+<script>
+$(document).ready(function(){
+    $("#editprofile").validate();
+});
+</script>

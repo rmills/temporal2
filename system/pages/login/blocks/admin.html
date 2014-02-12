@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="{root_images}favicon.ico" type="image/vnd.microsoft.icon"> 
+        <link rel="icon" href="{root_images}favicon.ico" type="image/vnd.microsoft.icon">
+        <title>{site_name} Login</title>
+        
+        <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/flatly/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        
+        {css}
+        <link rel="stylesheet" href="{root_doc}system/pages/login/assets/login.css" type="text/css" media="screen, projection">
+        {scripts}
+    </head>
+    <body>
+        <div id="login-form">
+            <form role="form" action="{root_doc}login" method="post">
+                <h2>Control Panel Login</h2>
+                <input type="hidden" name="do_login">
+                {login_error}
+                <div class="form-group">
+                    <label class="control-label" for="email">Email:</label>   
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span><input class="form-control" id="inputIcon" placeholder="Email" type="text" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="pass">Password:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input class="form-control" placeholder="Password" id="inputIcon" type="password" name="pass">
+                    </div>
+                </div>
+                <input class="btn btn-success" type="submit" value="&nbsp;&nbsp;Login&nbsp;&nbsp;" />
+            </form>
+        </div>
+        <div id="login-form-footer">
+            <i class="glyphicon glyphicon-fire"></i> <i>powered by temporal&nbsp;</i>
+        </div>
+        {footer}
+        {debug}
+    </body>
+</html> 

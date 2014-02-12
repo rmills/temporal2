@@ -1,0 +1,24 @@
+<style>
+    .table td{
+        vertical-align: middle;
+    }
+</style>
+<h1>Permissions Groups</h1>
+<hr>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>    
+            <th>ID</th>
+            <th>Name</th>
+            <th>Modules/Pages</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {list}
+    </tbody>
+</table>
+            
+<div class="form-controls">
+    <a class="btn btn-warning" href="{root_doc}admin/permissions/add">Add Group</a>
+</div>

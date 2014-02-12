@@ -1,0 +1,24 @@
+
+        <div id="login">
+            <form class="form-horizontal" action="{root_doc}login" method="post">
+                <legend>User Login</legend>
+                <input type="hidden" name="do_login" />
+                {login_error}
+                <div class="control-group">
+                    <label class="control-label" for="email">Email:</label>    
+                    <div class="input-prepend">
+                        &nbsp;&nbsp;<span class="add-on">@</span><input class="input-large" id="inputIcon" placeholder="Email" type="text" name="email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="pass">Password:</label>
+                    <div class="input-prepend">
+                        &nbsp;&nbsp;<span class="add-on"><i class="icon-lock"></i></span><input class="input-large" placeholder="Password" id="inputIcon" type="password" name="pass">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input class="btn btn-info" type="submit" value="&nbsp;&nbsp;Login&nbsp;&nbsp;">
+                </div>
+                <p class="signup"><a href="{root_doc}register">Sign Up</a> | <a href="{root_doc}resetpass">I forgot my password</a></a>
+            </form>
+        </div>

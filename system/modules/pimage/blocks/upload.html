@@ -1,0 +1,38 @@
+<div id="pimage-{zone}"></div>
+<div id="pimage-{zone}-btn" class="btn btn-primary">Update Image</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var updateImage = function(event, id, fileName, obj) {
+            //console.log(obj.html);
+            $('#pimage-{zone}-image').html(obj.html);
+        };
+        var fileNum = 0;
+        $('#pimage-{zone}').fineUploader({
+            debug: true,
+            uploadButtonText: "Select Files",
+            request: {
+                endpoint: "/appserve/upload",
+                paramsInBody: true,
+                params: {
+                    type: 'image',
+                    handler: 'Pimage',
+                    zone: '{zone}',
+                    fileNum: function() {
+                        fileNum+=1;
+                        return fileNum;
+                    }
+                }
+            },
+            showMessage: function(message) {
+                setTimeout(function() {
+                   //console.log(message);
+                }, 0);
+             },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg'],
+                sizeLimit: 5000000
+            },
+            button: $("#pimage-{zone}-btn")
+        }).on('complete', updateImage);
+    });
+</script>

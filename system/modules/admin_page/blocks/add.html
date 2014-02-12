@@ -1,0 +1,65 @@
+{status}
+
+<h1>Add New Page</h1>
+<hr>
+<form class="form-horizontal" role="form" id="pageform" action="{root_doc}admin/page/add/submit" method="post">
+    <div class="form-group">
+        <label for="title">Title:</label> <input class="required form-control" size="20" type="text" id="title" name="title" value="{settitle}"> 
+    </div>
+    <div class="well">This is the name of your page that will be used in the title bar (tab of browser) and CMS menus.</div>
+    <hr>
+    <div class="form-group">
+        <label for="url">Clean URL:</label> 
+        <div class="input-group">
+            <span class="input-group-addon">http://{domain}{root_doc}</span><input class="form-control required alphanumericcustom" size="20" type="text" id="url" name="url" value="{seturl}">
+        </div>
+    </div> 
+    <div class="well">A valid clean url is a word or phrase such as "contact" or "contact_us". Note there is no need for a .html, etc and it should only have an underline between words. For example if you had a contact page the clean url would be "contact", You would be able to see your new page at "http://{domain}/contact"</div> 
+    <hr>
+    <div class="form-group">
+        <label for="template">Template:</label>
+        <select class="form-control" id="template" name="template">
+            {templates}
+        </select>
+    </div>    
+    <p>&nbsp;</p>
+    <h3>Menu Options</h3>
+    <hr />
+    <div class="form-group">
+        <label for="publish">Publish In Menu: </label>&nbsp;&nbsp;&nbsp;<input  type="checkbox" id="publish" name="publish" {publish}>
+    </div>
+    <div class="well">Make sure you check this if your creating an item you what to see in the navigation. If you dont want this page to show up in the navigation uncheck this.</div>
+    <div id="menu-options">
+        <div class="form-group">
+            <label for="menu_title">Menu Title: <input size="20" class="form-control" type="text" id="menu_title" name="menu_title" value="{menu_title}" /></label>
+        </div>
+        <div class="well">This is what the name will be in the navigation. Typically this is the same as the Page Title.</div>
+        <div class="form-group">
+            <label for="parent">Menu Parent:</label>
+            <select id="parent" class="form-control" name="parent">
+                {parent}
+            </select>
+        </div>
+        <div class="well">This is used for navigation generation. Select the page this should appear under or leave as root for main pages. Leave as root if your unsure.</div>
+        <div class="form-group">
+            <label for="menu_weight">Menu Weight:</label>&nbsp;&nbsp;&nbsp;<input class="input" size="20" type="text" id="menu_weight" name="menu_weight" value="{menu_weight}" />
+        </div>
+        <div class="well">This effects sort order, larger the number lower in the navigation. Two items with the same weight will have a random position.</div>
+    </div>
+    <div class="form-controls">
+        <input  class="btn btn-info" type="submit" value="Create Page">
+    </div>
+</form>
+<script>
+    $(document).ready(function(){
+        $("#pageform").validate();
+    });
+
+    var val = $("#publish").is(':checked');
+    if(!val){
+        $("#menu-options").toggle();
+    }
+    $("#publish").click(function() {
+        $("#menu-options").slideToggle('slow');
+    });
+</script>

@@ -1,0 +1,42 @@
+<style>
+    #register .well{
+        margin-top: 10px;
+        font-size: 80%;
+    }
+    
+    #register label{
+        width: 125px;
+        text-align: right;
+        font-weight: bold;
+    }
+</style>
+<div id="register">
+    {error}
+    <form class="form-inline" id="formcontrol" action="{root_doc}register/submit" method="post">
+        <legend>Register</legend>
+        <div class="control-group">
+            <label for="email">Email:</label> 
+            <div class="input-prepend">
+                <span class="add-on">@</span><input class="input required" maxchar="80" size="20" type="text" id="email" name="email" value="{email}">
+            </div>
+            <div class="well">Must be valid, you will have to confirm it before you can login. This is always hidden and never shared.</div>
+        </div>
+        <div class="control-group"> 
+            <label for="user">User Name:</label> 
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-globe"></i></span><input class="input required" maxchar="40" size="20" type="text" id="username" name="user" value="{user}">
+            </div>
+            <div class="well">Name that will be shown in the community and profile.</div>
+        </div>
+        <div class="control-group">
+            <label for="password">Password:</label> 
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span><input class="input required" maxchar="40" size="20" type="password" id="password" name="password"> 
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-actions">
+            <input class="btn btn-info" type="submit" value="&nbsp;&nbsp;Register&nbsp;&nbsp;"> <a class="btn btn-warning" href="{root_doc}">Cancel</a> <br />
+        </div>
+    </form>
+</div>

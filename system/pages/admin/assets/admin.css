@@ -1,0 +1,39 @@
+body{
+    background-color: #f7f7f9;
+}
+
+label{
+    font-weight: bold;
+}
+
+#admin-content-warpper{
+    margin: 50px auto 0;
+    min-width: 300px;
+    border: 2px solid #F5F5F5;
+    background-color: #fff;
+}
+
+#admin-content{
+    padding: 20px;
+}
+
+.form-horizontal {
+    margin: 15px;
+}
+
+.well{
+    margin-bottom: 40px;
+}
+
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-controls{
+    text-align: right;
+    padding: 10px 30px;
+}
+
+.form-controls .btn{
+    margin: 0 10px;
+}

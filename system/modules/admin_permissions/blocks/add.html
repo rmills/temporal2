@@ -1,0 +1,21 @@
+<h1>Add Permissions Group</h1>
+<hr>
+{status}
+<form class="form-horizontal" id="pageform" action="{root_doc}admin/permissions/add/submit" method="post">
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <input class="form-control input required" size="20" type="text" id="name" name="name" placeholder="Name of group">
+    </div>
+    <div class="form-group">
+    {modules}
+    </div>
+    <p>&nbsp;</p>
+    <div class="form-controls">
+        <input class="btn btn-info" type="submit" value="Add Group"> &nbsp;<a class="btn btn-danger" href="{root_doc}admin/permissions/">Cancel</a>
+    </div>
+</form>
+<script>
+    $(document).ready(function(){
+        $("#pageform").validate();
+    });
+</script>
