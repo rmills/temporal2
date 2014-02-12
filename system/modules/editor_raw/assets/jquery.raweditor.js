@@ -128,7 +128,7 @@
                 ZoneData: content
             };
             this.history();
-            $( "#"+this.zone ).html($.tmpl( raweditorTemplate, data ));
+            $( "#"+this.zone ).html(tmpl( "raweditorTemplate", data ));
             //$("#editor-"+this.zone).width( $("#"+this.zone).parent().width() );
             //$("#editor-"+this.zone).height( 400 );
 

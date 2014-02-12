@@ -5,7 +5,9 @@ namespace Module;
 class Facebook_tags extends Module {
     
     public static function __registar_callback() {
-        \CMS::callstack_add('add_inc', DEFAULT_CALLBACK_PARSE+10);
+        if(ENABLE_FB_LOGIN){
+            \CMS::callstack_add('add_inc', DEFAULT_CALLBACK_PARSE+10);
+        }
     }
 
     public static function add_inc() {

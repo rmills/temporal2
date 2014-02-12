@@ -140,7 +140,7 @@
                 ZoneData: $("#"+this.zone).html()
             };
             this.history();
-            $( "#"+this.zone ).html($.tmpl( editorTemplate, data ));
+            $( "#"+this.zone ).html(tmpl( "editorTemplate", data ));
             
             $('#editor-history_'+this.zone).change({target: this},function(e) {
                 e.data.target.fetch_history($('#editor-history_'+e.data.target.zone).val());

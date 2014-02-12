@@ -260,3 +260,8 @@ if( is_dir(PATH_LAYOUT_ROOT) ){
     $config['path_layout'] = PATH_LAYOUT_ROOT_DEFAULT;
     $config['path_layout_default'] = PATH_LAYOUT_ROOT_DEFAULT.LAYOUT_DEFAULT; 
 }
+
+
+if(!defined('ENABLE_FB_LOGIN')){
+    define('ENABLE_FB_LOGIN', false);
+}

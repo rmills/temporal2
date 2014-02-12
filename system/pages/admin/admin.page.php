@@ -83,7 +83,7 @@ class Admin extends Page {
     }
 
     public static function build_welcome() {
-        $html = '<h2>Welcome to Temporal Site Management</h2><p style="text-align:center"><img src="{root_doc}system/inc/images/llama.jpg" /></p>';
+        $html = '<h1>Welcome to Temporal Site Management</h1>';
         \Html::set('{admin_content}', $html);
     }
 
