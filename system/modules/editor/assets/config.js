@@ -2,7 +2,7 @@
  * Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
-
+/*
 CKEDITOR.editorConfig = function( config ) {
 	
     config.toolbar_Full =
@@ -34,8 +34,30 @@ CKEDITOR.editorConfig = function( config ) {
             ['Link','Unlink','Anchor', '-', 'Bold', 'Italic', '-', 'Format', 'Styles','FontSize'],
             ['HorizontalRule', 'NumberedList','BulletedList']
     ];
-    
-    
+};
+*/
+CKEDITOR.editorConfig = function( config ) {
+	
+    config.toolbar_Full =
+    [
+            { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+            { name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+            { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv']},
+            { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+            { name: 'insert', items : [ 'Image','HorizontalRule',,'SpecialChar','PageBreak' ] },
+            '/',
+            { name: 'styles', items : [ 'Styles','Format'] }
+    ];
 
+    config.toolbar_Basic =
+    [
+            ['Link','Unlink','Anchor', '-', 'Bold', 'Italic', '-', 'Format', 'Styles','FontSize']
+    ];
+    
+    config.toolbar_Extended =
+    [
+            ['Link','Unlink','Anchor', '-', 'Bold', 'Italic', '-', 'Format', 'Styles','FontSize'],
+            ['HorizontalRule', 'NumberedList','BulletedList']
+    ];
 };
 

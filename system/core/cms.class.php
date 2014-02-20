@@ -567,6 +567,7 @@ class CMS {
                 }else{
                     $_SESSION['super_user'] = 'no';
                 }
+                $_SESSION['user_allow_ext'] = self::$_user->allow_file_upload;
                 
                 if(self::$_user->_error){
                     self::$_user = new User(DEFAULT_USER);

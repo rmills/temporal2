@@ -82,7 +82,8 @@
         };
         
         this.decode_data = function(str){
-            return decodeURIComponent((str+'').replace(/\+/g, '%20'));
+            return str;
+            //return decodeURIComponent((str+'').replace(/\+/g, '%20'));
         }
        
         this.toggle = function(){

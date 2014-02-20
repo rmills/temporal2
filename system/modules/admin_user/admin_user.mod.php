@@ -134,6 +134,13 @@ class Admin_user extends Module {
             } else {
                 \Html::set('{setsuperuser}');
             }
+            
+            if (isset($_POST['allow_upload'])) {
+                \Html::set('{allow_upload}', 'checked="checked"');
+            } else {
+                \Html::set('{allow_upload}');
+            }
+            
             \Html::set('{groups}', self::build_groups_list( array(1,2) ));
             \Html::set('{status}');
         }
@@ -158,6 +165,12 @@ class Admin_user extends Module {
             $super_user = 'no';
         }
         
+        if (isset($_POST['allow_upload'])) {
+            $allow_upload = true;
+        } else {
+            $allow_upload = false;
+        }
+        
         $groups = false;
         foreach($_POST as $k=>$v){
             if($v == 'add'){
@@ -173,14 +186,16 @@ class Admin_user extends Module {
                 `password`,
                 `salt`,
                 `super_user`,
-                `groups`
+                `groups`,
+                `allow_file_upload`
             ) VALUES (
                 \'' . \DB::clean($email) . '\',
                 \'' . \DB::clean($name) . '\',
                 \'' . \DB::clean($password) . '\',
                 \'' . \DB::clean($salt) . '\',
                 \'' . $super_user . '\',
-                \''.$groups.'\'
+                \''.$groups.'\',
+                \''.$allow_upload.'\'
 		)';
         \DB::q($sql);
         echo \DB::$_lasterror;
@@ -322,6 +337,12 @@ class Admin_user extends Module {
             } else {
                 \Html::set('{setsuperuser}');
             }
+            
+            if (isset($user->_data['allow_upload'])) {
+                \Html::set('{allow_upload}', 'checked="checked"');
+            } else {
+                \Html::set('{allow_upload}');
+            }
         }
     }
 
@@ -347,6 +368,12 @@ class Admin_user extends Module {
             $super_user = 'no';
         }
         
+        if (isset($_POST['allow_upload'])) {
+            $allow_upload = true;
+        } else {
+            $allow_upload = false;
+        }
+        
         $groups = false;
         foreach($_POST as $k=>$v){
             if($v == 'add'){
@@ -362,14 +389,16 @@ class Admin_user extends Module {
             `password` = \'' . \DB::clean($password) . '\',
              `salt` = \'' . \DB::clean($salt) . '\',
             `super_user` = \'' . \DB::clean($super_user) . '\',
-            `groups` = \'' . \DB::clean($groups) . '\'
+            `groups` = \'' . \DB::clean($groups) . '\',
+            `allow_file_upload` = \'' . \DB::clean($allow_upload) . '\'
             WHERE `uid` = \'' . \DB::clean($uid) . '\' LIMIT 1';
         } else {
             $sql = 'UPDATE `users` SET 
             `email` = \'' . \DB::clean($email) . '\',
             `name` = \'' . \DB::clean($name) . '\',
             `super_user` = \'' . \DB::clean($super_user) . '\',
-            `groups` = \'' . \DB::clean($groups) . '\'
+            `groups` = \'' . \DB::clean($groups) . '\',
+            `allow_file_upload` = \'' . \DB::clean($allow_upload) . '\'
             WHERE `uid` = \'' . \DB::clean($uid) . '\' LIMIT 1';
         }
 

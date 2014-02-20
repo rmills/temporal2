@@ -33,15 +33,24 @@ class Module {
     protected static function block($filename) {
         $trace = debug_backtrace();
         $class = explode('\\', $trace[1]['class']);
-        $file = PATH_MODULE_ROOT . strtolower($class[1]) . '/blocks/' . $filename;
-        if (is_file($file)) {
-            return file_get_contents($file);
-        } else {
+        $path = explode(DIRECTORY_SEPARATOR,$trace[0]['file']);
+        $type = strtolower($path[count($path)-4]);
+        
+        if($type == 'site'){
             $file = PATH_MODULE_ROOT_ADDON . strtolower($class[1]) . '/blocks/' . $filename;
             if (is_file($file)) {
                 return file_get_contents($file);
             } else {
-                return 'NotFound: '.$file;
+                return 'Not Found: '.$file;
+                \CMS::log('Page', 'Missing block: ' . $file, 2);
+                return false;
+            }
+        }else{
+            $file = PATH_MODULE_ROOT . strtolower($class[1]) . '/blocks/' . $filename;
+            if (is_file($file)) {
+                return file_get_contents($file);
+            } else {
+                return 'Not Found: '.$file;
                 \CMS::log('Page', 'Missing block: ' . $file, 2);
                 return false;
             }

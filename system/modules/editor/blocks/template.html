@@ -1,12 +1,11 @@
 <script type="text/x-tmpl" id="editorTemplate">
-    <h3>Zone: {%=o.Zone%}</h3>
     <form action="" method="post">
-        <div id="edit-{%=o.Zone%}" contenteditable="true">{%=o.ZoneData%}</div>
+        <div id="edit-{%=o.Zone%}" contenteditable="true">{%#o.ZoneData%}</div>
     </form>
     <p><button class="btn btn-info" id="zoneupdate_{%=o.Zone%}">Update Zone</button> <button class="btn btn-warning" id="zonerevert_{%=o.Zone%}">Revert Changes</button> <!--<button class="btn btn-danger" onclick="javascript:editor_EnableEditorZones()">Close Without Save</button>--></p>
-    <div style="display: inline"class="input-prepend input-append">
-        <span class="add-on">History</span>
-        <select id="editor-history_{%=o.Zone%}"></select>
+    <p>&nbsp;</p>
+    <div class="input-group">
+        <span class="input-group-addon">History</span><select class="form-control " id="editor-history_{%=o.Zone%}"></select>
     </div>
 </script>
 <script type="text/javascript">

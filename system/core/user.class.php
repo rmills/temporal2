@@ -36,6 +36,7 @@ class User {
      */
     public $_mod_user = false;
     
+    
     /**
      * @var array permissions stack
      */
@@ -63,6 +64,7 @@ class User {
     public $reset_request_time;
     public $auth_provider;
     public $auth_id;
+    public $allow_file_upload;
     
     
     

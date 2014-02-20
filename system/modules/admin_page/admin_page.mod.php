@@ -200,16 +200,22 @@ class Admin_page extends Module {
 
     public static function edit_page() {
         $html = self::block('edit.html');
-
+        $pid = false;
         if (is_numeric(\CMS::$_vars[3])) {
             $pid = \CMS::$_vars[3];
-        } else {
+        }elseif( isset($_POST['pid']) ) {
             $pid = $_POST['pid'];
         }
+        
+        if(!$pid){
+            \Html::set('{admin_content}', '<h1>Oops, you can not edit the URL for this page</h1>');
+            return true;
+        }
+        
 
         $zdata = \Page\Zpage::fetch_by_id($pid, true);
 
-
+        
 
         \Html::set('{admin_content}', $html);
         \Html::set('{templates}', self::build_template_list('option_list', $zdata['template']));
