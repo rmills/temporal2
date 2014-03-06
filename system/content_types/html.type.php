@@ -194,6 +194,7 @@ class Html {
         self::set('{scripts}');
         self::set('{footer}');
         self::set('{debug}');
+        self::set('{css_preload}');
 
         self::set('{domain}', DOMAIN);
         self::set('{default_protocol}', DEFAULT_PROTOCOL);
