@@ -10,7 +10,7 @@ if(!defined('ALLOW_INSTALL')){
 }
 
 if(!defined('ENABLE_DEBUG')){
-    define('ENABLE_DEBUG', false);
+    define('ENABLE_DEBUG', true);
 }
 
 if(!defined('ENABLE_DEBUG_FORCED_OUTPUT')){
@@ -29,16 +29,12 @@ if(!defined('SITE_NAME')){
     define('SITE_NAME', 'Temporal'); // Name of your site
 }
 
-if(!defined('BRANDING_FOLDER')){
-    define('BRANDING_FOLDER', 'default'); //Branding package
-}
-
 if(!defined('PATH_LAYOUT_ROOT')){
     /*
     * Setting this will disable the default layout, if this folder is not found
     * the system will enable the default template.
     */
-    define('PATH_LAYOUT_ROOT', 'site/layout/test/');
+    define('PATH_LAYOUT_ROOT', 'system/layout/default/');
 }
 
 if(!defined('DATABASE_HOST')){
@@ -54,19 +50,16 @@ if(!defined('DATABASE_PASSWORD')){
 }
 
 if(!defined('DATABASE_TABLE')){
-    define('DATABASE_TABLE', 'temporal_v7');
+    define('DATABASE_TABLE', 'temporal2');
 }
 
 if(!defined('DOMAIN')){
     define('DOMAIN', '127.0.0.1');
 }
 
-if(!defined('PASS_SALT')){
-    define('PASS_SALT', 'guejd;ag873hasf72yuwea_sd38yfaskdfh8skf2');
-}
 
+//Default user loaded, almost always "guest"
 if(!defined('DEFAULT_USER')){
-    #Default user loaded, i.e. guest
     define('DEFAULT_USER', 1);
 }
 
@@ -78,53 +71,53 @@ if(!defined('LOCAL_PATH')){
     define('LOCAL_PATH', $_SERVER['DOCUMENT_ROOT'] );
 }
 
+//Path to layout folder
 if(!defined('PATH_LAYOUT_ROOT_DEFAULT')){
-    #Path to layout folder
     define('PATH_LAYOUT_ROOT_DEFAULT', 'system/layout/default/');
 }
 
+//Path to layout addon folder
 if(!defined('PATH_LAYOUT_ROOT_ADDON')){
-    #Path to layout addon folder
     define('PATH_LAYOUT_ROOT_ADDON', 'site/layout/');
 }
 
+//Default html if no page is found
 if(!defined('LAYOUT_DEFAULT')){
-    #Default html, includes all wrapping elements
-    define('LAYOUT_DEFAULT', 'default.html');
+    define('LAYOUT_DEFAULT', '_firstload.html');
 }
 
+//Path to module folder
 if(!defined('PATH_MODULE_ROOT')){
-    #Path to module folder
     define('PATH_MODULE_ROOT', 'system/modules/');
 }
 
+//Path to module folder
 if(!defined('PATH_CLASSES_ROOT_ADDON')){
-    #Path to module folder
     define('PATH_CLASSES_ROOT_ADDON', 'site/classes/');
 }
 
+//Path to module folder addon
 if(!defined('PATH_MODULE_ROOT_ADDON')){
-    #Path to module folder addon
     define('PATH_MODULE_ROOT_ADDON', 'site/modules/');
 }
 
+//Path to user module folder addon
 if(!defined('PATH_USERMOD_ROOT')){
-    #Path to user module folder addon
     define('PATH_USERMOD_ROOT', 'system/usermod/');
 }
 
+//Path to user module folder addon
 if(!defined('PATH_USERMOD_ROOT_ADDON')){
-    #Path to user module folder addon
     define('PATH_USERMOD_ROOT_ADDON', 'site/usermod/');
 }
 
+//Path to user module folder addon
 if(!defined('PATH_APPSERVE_ROOT')){
-    #Path to user module folder addon
     define('PATH_APPSERVE_ROOT', 'system/appserve/');
 }
 
+//Path to user module folder addon
 if(!defined('PATH_APPSERVE_ROOT_ADDON')){
-    #Path to user module folder addon
     define('PATH_APPSERVE_ROOT_ADDON', 'site/appserve/');
 }
 
@@ -164,9 +157,7 @@ if(!defined('REGISTER_DEFAULT_GROUPS')){
     define('REGISTER_DEFAULT_GROUPS', '1');
 }
 
-/**
- * Only "admin" and "community" are supported
- */
+//admin or community
 if(!defined('USER_TYPE')){
     define('USER_TYPE', 'admin');
 }
@@ -229,12 +220,15 @@ if(!defined('MAIL_FROM_NAME')){
 if(!defined('MAIL_SECURE')){
     define('MAIL_SECURE', 'ssl');
 }
+
+//experimental
 if(!defined('ENABLE_CACHE')){
-    define('ENABLE_CACHE', false); //experimental
+    define('ENABLE_CACHE', false);
 }
 
+// this is wrapped into strtotime();
 if(!defined('CACHE_TIME')){
-    define('CACHE_TIME', "+24 hour"); // this is wrapped into strtotime();
+    define('CACHE_TIME', "+24 hour");
 }
 
 if(!defined('ZPAGE_HISTORY_LIMIT')){

@@ -146,6 +146,7 @@ class Admin_page extends Module {
     public static function add_page_submit() {
         $title = trim($_POST['title']);
         $url = strtolower(trim($_POST['url']));
+        $url = self::format_url($url);
         $template = pathinfo(trim($_POST['template']), PATHINFO_FILENAME) . '.' . pathinfo(trim($_POST['template']), PATHINFO_EXTENSION);
 
         $weight = trim($_POST['menu_weight']);
@@ -248,10 +249,9 @@ class Admin_page extends Module {
     }
 
     public static function edit_page_submit() {
-
-
         $title = trim($_POST['title']);
         $url = strtolower(trim($_POST['url']));
+        $url = self::format_url($url);
         $template = pathinfo(trim($_POST['template']), PATHINFO_FILENAME) . '.' . pathinfo(trim($_POST['template']), PATHINFO_EXTENSION);
         $description = trim($_POST['description']);
         $keywords = trim($_POST['keywords']);
@@ -353,7 +353,9 @@ class Admin_page extends Module {
         $folder = dir(\CMS::$_config['path_layout']);
         while (false !== ($entry = $folder->read())) {
             if (pathinfo($entry, PATHINFO_EXTENSION) == 'html' && !is_numeric(pathinfo($entry, PATHINFO_FILENAME))) {
-                $files[] = $entry;
+                if($entry{0} != '_'){
+                    $files[] = $entry;
+                }
             }
         }
         $folder->close();
@@ -432,7 +434,6 @@ class Admin_page extends Module {
 
     public static function edit_list() {
         $html = self::block('list.html');
-        $users = array();
         $sql = 'SELECT * FROM `pages`';
         $list = \DB::q($sql);
         $pages = array();
@@ -485,6 +486,15 @@ class Admin_page extends Module {
         \Html::set('{admin_content}', $html);
 
         \Html::set('{status}');
+    }
+    
+    public static function format_url($url){
+        $url = trim($url);
+        $filter = array(" ", "'", "_", '"', '/', '$', '#', '/', '\'','.', '--');
+        foreach($filter as $v){
+           $url = str_replace($v, '-', $url); 
+        }
+        return $url;
     }
 
 }

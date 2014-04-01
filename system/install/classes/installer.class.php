@@ -30,9 +30,12 @@ class Installer{
         
         $command = 'mysql -v -u '.DATABASE_USER.$pass.' -h '.
                 DATABASE_HOST.' -D '.DATABASE_TABLE.' < '. $sql;
-        $check = shell_exec($command);
-        self::$db_error = $check;
-        return $check;
+        echo $command;
+        $check = array();
+        exec($command, $check);
+        print_r( $check );
+        self::$db_error = implode('', $check);
+        return implode('', $check);
     }
     
     public static function init_user($name, $email, $password){

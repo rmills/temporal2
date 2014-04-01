@@ -98,7 +98,7 @@ class CMS {
     static private $__log = array();
     
     /**
-     * Do not use. This has replace in favor of BUILD_TIME
+     * Do not use. This has replaced in favor of BUILD_TIME
      * @var int 
      */
     static private $__time;
@@ -142,10 +142,10 @@ class CMS {
             self::$_vars[] = false;
         }
         foreach (self::$_config['vars'] as $key => $v) {
-            if (isset($_GET[$v])) {
-                self::$_vars[$key] = strtolower($_GET[$v]);
-            } elseif (isset($_POST[$v])) {
-                self::$_vars[$key] = strtolower($_POST[$v]);
+            if (!is_null(filter_input(INPUT_GET , $v, FILTER_SANITIZE_STRING))) {
+                self::$_vars[$key] = strtolower(filter_input(INPUT_GET , $v, FILTER_SANITIZE_STRING));
+            } elseif (!is_null(filter_input(INPUT_POST , $v, FILTER_SANITIZE_STRING))) {
+                self::$_vars[$key] = strtolower(filter_input(INPUT_POST , $v, FILTER_SANITIZE_STRING));
             }
         }
     }
@@ -371,7 +371,7 @@ class CMS {
         foreach (self::$__modules as $v) {
             $module = ucwords($v[1]);
             $name = '\Module\\'.$module;
-            $try = call_user_func(array($name, '__registar_callback'));
+            call_user_func(array($name, '__registar_callback'));
         }
     }
     
@@ -384,7 +384,7 @@ class CMS {
         foreach (self::$__appserve as $v) {
             $module = ucwords($v[1]);
             $name = '\Appserve\\'.$module;
-            $try = call_user_func(array($name, '__registar_callback'));
+            call_user_func(array($name, '__registar_callback'));
         }
     }
 
@@ -594,7 +594,7 @@ class CMS {
         foreach (self::$__pages as $v) {
             $page = ucwords($v[1]);
             $name = '\Page\\'.$page;
-            $try = call_user_func(array($name, '__registar_callback'));
+            call_user_func(array($name, '__registar_callback'));
         }
     }
 

@@ -22,8 +22,8 @@ if(is_file('site/config.inc.php')){
 include 'system/system.config.php';
 
 if(ALLOW_INSTALL){
-    if(isset($_GET['uvar1'])){
-        if($_GET['uvar1'] == 'install'){
+    if(!is_null( filter_input(INPUT_GET ,'uvar1', FILTER_SANITIZE_STRING) )){
+        if( filter_input(INPUT_GET ,'uvar1', FILTER_SANITIZE_STRING) === 'install'){
             include 'system/install/install.php';
             exit;
         }else{
@@ -67,20 +67,23 @@ if(ENABLE_MAIL){
     require_once('system/core/phpmail/class.phpmailer.php');
 }
 
-if(!isset($_COOKIE["_tx"])){
+if(!is_null( filter_input(INPUT_COOKIE ,'_tx', FILTER_SANITIZE_STRING) )){
     $key = \Crypto::random_filename(20);
     setcookie('_tx', $key, time() + (10 * 365 * 24 * 60 * 60));
-    $_COOKIE["_tx"] = $key;
+    /**
+     * May not be needed
+     * $_COOKIE["_tx"] = $key;
+     */
+    
 }
-
-if(!isset($_SESSION["_txs"])){
+if(!isset( $_SESSION["_txs"] )){
     $_SESSION["_txs"] = \Crypto::random_filename(20);
 }
 
 \DB::init();
 
 if(ENABLE_CACHE){
-    $cache = new CacheDB($_SERVER['REQUEST_URI'], false);
+    $cache = new CacheDB(filter_input(INPUT_SERVER ,'REQUEST_URI', FILTER_SANITIZE_STRING), false);
     if($cache->_status){
         $body = $cache->data();
         if(isset($_SESSION['super_user'])){

@@ -9,7 +9,7 @@ if(!defined('ALLOW_INSTALL')){
 }
 
 $template = file_get_contents('system/install/templates/index.html');
-//$install_snapshot = file_get_contents(INSTALL_SNAPSHOT);
+$install_snapshot = realpath (INSTALL_SNAPSHOT);
 $notice = array();
 $install_ok = false;
 
@@ -24,9 +24,9 @@ if(ALLOW_INSTALL){
     }else{
         $install_ok = false;
         if(Installer::$db_error != ''){
-            $template = str_replace('{db_status}', '<div class="alert alert-error">DB Status: Could not connect to the DB, Error: '.Installer::$db_error.'</div><div class="alert alert-error">You must correct the errors above before you can install.</div>', $template);
+            $template = str_replace('{db_status}', '<div class="alert alert-danger">DB Status: Could not connect to the DB, Error: '.Installer::$db_error.'</div><div class="alert alert-danger">You must correct the errors above before you can install.</div>', $template);
         }else{
-            $template = str_replace('{db_status}', '<div class="alert alert-error">DB Status: Could not connect to the DB, Error: None provided (is the host address correct?)</div><div class="alert alert-error">You must correct the errors above before you can install.</div>', $template);
+            $template = str_replace('{db_status}', '<div class="alert alert-danger">DB Status: Could not connect to the DB, Error: None provided (is the host address correct?)</div><div class="alert alert-error">You must correct the errors above before you can install.</div>', $template);
         }
     }
     
@@ -37,13 +37,13 @@ if(ALLOW_INSTALL){
         if($name == '' || $email == '' || $password == '' ){
             $notice[] = '<div class="warn"><p>Name, Email and Password are required</p></div>';
         }else{
-            $db_install_data = Installer::init_db(INSTALL_SNAPSHOT);
+            $db_install_data = Installer::init_db($install_snapshot);
             $notice[] = '<div class="alert alert-success"><p>If the magical powers of the terminal worked your database should not be installed. You can read the output below.</p></div>';
             $try_user = Installer::init_user($name, $email, $password);
             if(!$try_user){
                 $notice[] = '<div class="alert alert-success"><p>The user with the email address "'.$email.'" has been created as a super user with the password "'.$password.'"</p></div>';
             }else{
-                $notice[] = '<div class="alert alert-error"><p>Could not create user, Error: '.$try_user.'</p></div>';
+                $notice[] = '<div class="alert alert-danger"><p>Could not create user, Error: '.$try_user.'</p></div>';
             }
             $notice[] = '<p>&nbsp;</p><div id="showdb"><a>View db return data</a></div><div id="dbout" style="display:none"><h4>DB Install Return</h4>'.$db_install_data.'</div><p>&nbsp;</p>';
         }

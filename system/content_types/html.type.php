@@ -228,13 +228,17 @@ class Html {
     /**
      * Output 404 message
      */
-    public static function error_404(){
+    public static function error_404($die = false){
         $path_custom = PATH_LAYOUT_ROOT.'404.html';
         $path_system = PATH_LAYOUT_ROOT_DEFAULT.'404.html';
         if(is_file($path_custom)){
-           echo $path_custom; 
+           echo file_get_contents($path_custom); 
         }else{
             echo file_get_contents($path_system);
+        }
+        
+        if($die){
+            die();
         }
     }
 

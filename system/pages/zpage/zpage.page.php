@@ -17,17 +17,17 @@ class Zpage extends Page {
 
         if (\CMS::allowed()) {
             \CMS::callstack_add('check_url', 10);
-            if (\CMS::$_vars[0] == 'update_zone' && isset($_POST['zone_data'])) {
+            if ( \CMS::$_vars[0] == 'update_zone' && !is_null( filter_input( INPUT_POST, 'zone_data', FILTER_UNSAFE_RAW) ) ) {
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
                 \CMS::callstack_add('update', DEFAULT_CALLBACK_PARSE);
             }
-            if (\CMS::$_vars[0] == 'zone_history' && isset($_POST['zone']) && isset($_POST['pid'])) {
+            if (\CMS::$_vars[0] == 'zone_history' && !is_null( filter_input(INPUT_POST ,'zone', FILTER_SANITIZE_STRING) ) && !is_null(filter_input(INPUT_POST ,'pid', FILTER_SANITIZE_NUMBER_INT) ) ){
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
                 \CMS::callstack_add('zone_history', DEFAULT_CALLBACK_PARSE);
             }
-            if (\CMS::$_vars[0] == 'zone_history_data' && isset($_POST['z_id'])) {
+            if (\CMS::$_vars[0] == 'zone_history_data' && !is_null( filter_input(INPUT_POST ,'z_id', FILTER_SANITIZE_NUMBER_INT) )) {
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
                 \CMS::callstack_add('zone_history_data', DEFAULT_CALLBACK_PARSE);
@@ -36,7 +36,7 @@ class Zpage extends Page {
     }
 
     public static function update() {
-        self::update_zone(\CMS::$_vars[1], \CMS::$_vars[2], $_POST['zone_data']);
+        self::update_zone(\CMS::$_vars[1], \CMS::$_vars[2], filter_input( INPUT_POST ,'zone_data', FILTER_UNSAFE_RAW) );
     }
 
     public static function check_url() {
@@ -139,7 +139,6 @@ class Zpage extends Page {
     }
     
     public static function reg_page_list() {
-        $pages = array();
         $sql = 'SELECT `url` FROM `pages`';
         $response = \DB::q($sql);
         if (is_array($response)) {
@@ -172,11 +171,10 @@ class Zpage extends Page {
     }
 
     private static function display_404() {
-        \Html::load('404.html');
+        \Html::error_404();
     }
 
     private static function update_zone($z_id, $pid, $zdata) {
-        $zdate = date("M jS Y - h:ma");
         $zdate = date("U");
         $zdata = urlencode(trim($zdata));
         $sql = '
@@ -207,8 +205,8 @@ class Zpage extends Page {
     }
     
     public static function zone_history() {
-        $zone = $_POST['zone'];
-        $pid = $_POST['pid'];
+        $zone = filter_input( INPUT_POST ,'zone', FILTER_SANITIZE_STRING);
+        $pid = filter_input( INPUT_POST ,'pid', FILTER_SANITIZE_NUMBER_INT);
         
         $sql = 'SELECT * FROM `zones` WHERE `z_pid` = \'' . \DB::clean($pid) . '\' AND `z_parent` = \'' . \DB::clean($zone) . '\' ORDER BY `z_id` DESC LIMIT '.ZPAGE_HISTORY_LIMIT.';';
         
@@ -232,7 +230,7 @@ class Zpage extends Page {
     }
     
     public static function zone_history_data() {
-        $z_id = $_POST['z_id'];
+        $z_id = filter_input( INPUT_POST ,'z_id', FILTER_SANITIZE_NUMBER_INT);
         
         $sql = 'SELECT * FROM `zones` WHERE `z_id` = \'' . \DB::clean($z_id) . '\' LIMIT 1;';
         
