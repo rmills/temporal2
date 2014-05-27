@@ -82,7 +82,7 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-insert  into `groups`(`id`,`modules`,`name`) values (1,'module\\editor,page\\login,page\\register,page\\zpage,page\\resetpass','public'),(2,'page\\login,page\\profile,page\\zpage','loggedin'),(10,'module\\media,module\\admin_bar,module\\admin_page,module\\admin_permissions,module\\editor2,module\\editor_raw,page\\admin','Editors');
+insert  into `groups`(`id`,`modules`,`name`) values (1,'module\\editor,page\\login,page\\register,page\\zpage,page\\resetpass','public'),(2,'page\\login,page\\profile,page\\zpage','loggedin'),(3,'module\\media,module\\admin_bar,module\\admin_page,module\\admin_permissions,module\\editor2,module\\editor_raw,page\\admin','Editors');
 
 DROP TABLE IF EXISTS `images`;
 
@@ -210,3 +210,7 @@ CREATE TABLE `zones` (
   `z_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`z_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+insert  into `users`(`email`,`name`,`password`,`groups`,`super_user`,`mod_user`,`status`,`salt`,`activation_code`,`date_create`,`last_ip`,`reset_key`,`reset_request_ip`,`reset_request_time`,`auth_provider`,`auth_id`,`allow_file_upload`) values ('guest@domain.com','guest',NULL,'1,','no','no','active',NULL,'0',NULL,NULL,NULL,NULL,NULL,'site','0',0);
+
+

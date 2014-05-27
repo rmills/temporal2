@@ -32,7 +32,6 @@ class Installer{
                 DATABASE_HOST.' -D '.DATABASE_TABLE.' < '. $sql;
         $check = array();
         exec($command, $check);
-        print_r( $check );
         self::$db_error = implode('', $check);
         return implode('', $check);
     }
@@ -60,13 +59,18 @@ class Installer{
                 \'' . self::clean($name) . '\',
                 \'' . self::clean($password) . '\',
                 \'' . self::clean($salt) . '\',
-                \'' . REGISTER_DEFAULT_GROUPS . '\',
+                \'1,2,\',
                 \'active\',
                 \'yes\',
                 \'' . date("Ymd") . '\',
                 \'' . $_SERVER['REMOTE_ADDR'] . '\'
             )';
         @mysqli_query(self::$db, $sql);
+        
+        $sql = '
+            INSERT INTO `pages`(`menu_title`,`title`,`parent`,`weight`,`published`,`meta_description`,`meta_keywords`,`url`,`template`) values (\'Home\',\'Home\',0,100,\'no\',\'Sample Homepage\',\'Sample Homepage\',\'home\',\'default.html\')';
+        @mysqli_query(self::$db, $sql);
+        
         return mysqli_error(self::$db);
     }
     
