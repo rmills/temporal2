@@ -30,7 +30,6 @@ class Installer{
         
         $command = 'mysql -v -u '.DATABASE_USER.$pass.' -h '.
                 DATABASE_HOST.' -D '.DATABASE_TABLE.' < '. $sql;
-        echo $command;
         $check = array();
         exec($command, $check);
         print_r( $check );
