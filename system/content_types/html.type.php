@@ -206,7 +206,7 @@ class Html {
     }
 
     /**
-     * Load a template into the bugger
+     * Load a template into the buffer
      * @param type $file filename
      * @return boolean true if a template is found
      */
