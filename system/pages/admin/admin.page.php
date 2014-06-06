@@ -35,12 +35,6 @@ class Admin extends Page {
         \Html::set('{admin_title}', SITE_NAME . ' Administration');
         Admin::add_link('<li><a href="{root_doc}">Return to site</a></li>');
         Admin::add_link('<li><a href="{root_doc}logout">Logout</a></li>');
-
-
-        self::build_admin_menu();
-        if (!self::$_subpage) {
-            self::build_welcome();
-        }
     }
 
     public static function template_body($html) {
@@ -48,6 +42,10 @@ class Admin extends Page {
     }
 
     public static function parse_tags() {
+        self::build_admin_menu();
+        if (!self::$_subpage) {
+            self::build_welcome();
+        }
         \Html::set('{admincontent}', self::$_body);
     }
 
