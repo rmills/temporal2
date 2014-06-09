@@ -4,7 +4,7 @@ namespace Module;
 class Notice extends Module{
     public static function info($string){
         return '
-            <div class="alert">
+            <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 '.$string.'
             </div>
@@ -13,7 +13,7 @@ class Notice extends Module{
     
     public static function warn($string){
         return '
-            <div class="alert alert-warn">
+            <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 '.$string.'
             </div>
@@ -22,7 +22,7 @@ class Notice extends Module{
     
     public static function error($string){
         return '
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 '.$string.'
             </div>
