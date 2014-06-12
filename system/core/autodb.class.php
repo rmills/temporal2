@@ -18,6 +18,8 @@ class AutoDB{
      */
     public $_fields = array();
     
+    public $_fields_types = array();
+    
     /**
      * This class must be init by setting the database table, id field and id
      * @param string $table name of the table
@@ -50,6 +52,7 @@ class AutoDB{
         }else{
             $this->_config['id'] = $id;
         }
+        $this->_fields_types = \DB::fetch_field_data_for_id($this->_config['table'], $id, $id_field);
         
         if(!$id_field){
            $id_field = $this->_config['id_field'];
@@ -65,7 +68,6 @@ class AutoDB{
             if(count($try)){
                 foreach($try[0] as $k=>$v){
                     $this->{$k} = $v;
-                    
                 }
                 return true;
             }else{

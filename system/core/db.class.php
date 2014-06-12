@@ -91,6 +91,35 @@ class DB {
         return $data;
     }
     
+    
+    /**
+     * Get name, type and max len for a row.
+     * 
+     * @param string $table table name
+     * @param int $id id for row to fetch
+     * @param string $id_field name of field
+     * @return array contains name, type, max_len
+     */
+    public static function fetch_field_data_for_id($table, $id, $id_field = 'id') {
+        $sql = 'SELECT * FROM \''.self::clean($table).'\' WHERE `'.self::clean($id_field).'` = \''.self::clean($id).'\'';
+        
+        /** store query for debug * */
+        self::$__querys[] = $sql;
+        $result = mysqli_query(self::$__connection, $sql);
+        $data = array();
+        if ($result) {
+
+            /* Get field information for all columns */
+            $finfo = $result->fetch_fields();
+
+            foreach ($finfo as $val) {
+                $data[] = array('name'=>$val->name, 'type'=>$val->type, 'max_len'=>$val->max_length);
+            }
+            $result->close();
+        }
+        return $data;
+    }
+    
     /**
      * Sanitise user input for SQL querys, not binary safe
      * @param string $input
