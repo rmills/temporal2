@@ -40,3 +40,4 @@ CKEDITOR.editorConfig = function( config ) {
     ];
     config.extraPlugins = "imagebrowser";
 };
+CKEDITOR.config.allowedContent = true; 
