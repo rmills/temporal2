@@ -83,7 +83,6 @@
         
         this.decode_data = function(str){
             str = decodeURIComponent((str+'').replace(/\+/g, '%20'));
-            console.log(str);
             return str;
         }
        
