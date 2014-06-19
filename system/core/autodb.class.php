@@ -81,9 +81,10 @@ class AutoDB{
     /**
      * Cross check fields with db and insert
      * @param array $array init item
+     * @param boolean $autoload init self after db insert
      * @return boolean id on true, false on fail
      */
-    public function init($array = array()){
+    public function init($array = array(), $autoinit = false){
         if(is_array($array)){
             $keys = array();
             $values = array();
@@ -129,6 +130,9 @@ class AutoDB{
             }
             $sql .= ')';
             \DB::q($sql);
+            if($autoinit){
+                $this->load(\DB::$_lastid);
+            }
             return \DB::$_lastid;
         }else{
             return false;
