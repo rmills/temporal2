@@ -61,7 +61,7 @@ class Module {
     /**
      * Fetch an asset of a Module in a formated tag or url path
      * @param string $filename name of file
-     * @param string $type type: css,js,image
+     * @param string $type tag type: css, js, image
      * @return string url/html tag
      * 
      * Leave type blank to return just the path
