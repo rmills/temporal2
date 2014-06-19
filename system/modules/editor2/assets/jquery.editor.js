@@ -84,8 +84,12 @@
         };
         
         this.decode_data = function(str){
+            /* old version, not decoding correctly?
             return str;
             //return decodeURIComponent((str+'').replace(/\+/g, '%20'));
+            */
+            str = decodeURIComponent((str+'').replace(/\+/g, '%20'));
+            return str;
         }
        
         this.toggle = function(){
