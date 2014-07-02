@@ -79,9 +79,9 @@ class Page {
             if(is_file($file)){
                 switch($type){
                     case 'css':
-                        return '<link rel="stylesheet" href="'.$file.'" type="text/css">';
+                        return '<link rel="stylesheet" href="/'.$file.'" type="text/css">';
                     case 'js':
-                        return '<script type="text/javascript" src="'.$file.'"></script>';
+                        return '<script type="text/javascript" src="/'.$file.'"></script>';
                     case 'image':
                         return '<img src="'.$file.'">';
                     default:

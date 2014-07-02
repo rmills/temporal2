@@ -130,10 +130,11 @@ class AutoDB{
             }
             $sql .= ')';
             \DB::q($sql);
+            $new_id = \DB::$_lastid;
             if($autoinit){
-                $this->load(\DB::$_lastid);
+                $this->load($new_id);
             }
-            return \DB::$_lastid;
+            return $new_id;
         }else{
             return false;
         }
