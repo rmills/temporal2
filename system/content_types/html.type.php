@@ -203,6 +203,7 @@ class Html {
         self::set('{root_js}', PATH_BASE . CMS::$_config['path_layout'] . 'js/');
         self::set('{root_images}', PATH_BASE . CMS::$_config['path_layout'] . 'images/');
         self::set('{site_name}', SITE_NAME);
+        self::set('{css_type}', CSS_TYPE);
     }
 
     /**
