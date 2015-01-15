@@ -151,6 +151,7 @@
             
             if(document.getElementById(this.zone)){
                 window['editor_'+this.zone] = CKEDITOR.inline( document.getElementById( "edit-"+this.zone ) );
+                CKEDITOR.replace( document.getElementById( "edit-"+this.zone ), {customConfig: '/system/modules/editor2/assets/config.js'});
             }
             try{
                 CKFinder.setupCKEditor( window['editor_'+this.zone], { basePath : '/site/modules/media/assets/', skin : 'v1' });
