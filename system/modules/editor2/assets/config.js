@@ -33,10 +33,10 @@ CKEDITOR.editorConfig = function( config ) {
 	// Let's have it basic on dialogs as well.
 	config.removeDialogTabs = 'link:advanced';*/
     config.toolbar = [
-        [ 'Image', '-', 'NewPage', 'Preview', '-', 'Templates' ],
+        [ 'Image', 'document', '-', 'NewPage', 'Preview', '-', 'Templates' ],
         [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
         '/',
-        [ 'Bold', 'Italic' ]
+        [ 'basicstyles','paragraph', 'align', 'Bold', 'Italic' ]
     ];
     config.extraPlugins = "imagebrowser";
 };
