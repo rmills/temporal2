@@ -23,7 +23,22 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'tools' },
                 { name: 'image2' },
 		{ name: 'others' },
+	*/	
+        
+        config.toolbarGroups = [
+		{ name: 'document',    groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'tools' },
+                { name: 'image2' },
+		{ name: 'others' },
 		{ name: 'about' }
+	];{ name: 'about' }
 	];
 
 	// The default plugins included in the basic setup define some buttons that
@@ -31,13 +46,13 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
 
 	// Let's have it basic on dialogs as well.
-	config.removeDialogTabs = 'link:advanced';*/
-    config.toolbar = [
+	config.removeDialogTabs = 'link:advanced';
+    /*config.toolbar = [
         [ 'Image', 'document', '-', 'NewPage', 'Preview', '-', 'Templates' ],
         [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
         '/',
         [ 'basicstyles','paragraph', 'align', 'Bold', 'Italic' ]
-    ];
+    ];*/
     config.extraPlugins = "imagebrowser";
 };
 CKEDITOR.config.allowedContent = true; 
