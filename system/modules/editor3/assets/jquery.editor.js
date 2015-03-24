@@ -33,6 +33,13 @@
                         life: 3000, 
                         speed:  'slow'
                     });
+                }else{
+                    $.jGrowl("WARNING!!! Update Failed, your session may have timed out. Please Login and try again.", {
+                        life: 10000, 
+                        speed:  'slow',
+                        header: 'Important',
+                        sticky: true
+                    });
                 }
             });
         };
@@ -148,17 +155,15 @@
             $('#editor-history_'+this.zone).change({target: this},function(e) {
                 e.data.target.fetch_history($('#editor-history_'+e.data.target.zone).val());
             });
-            console.log(1);
             if(document.getElementById(this.zone)){
-                console.log(2);
-                window['editor_'+this.zone] = CKEDITOR.inline( document.getElementById( "edit-"+this.zone ) );
-                console.log(3);
                 //CKEDITOR.replace( document.getElementById( "edit-"+this.zone ), {customConfig: '/system/modules/editor2/assets/config.js'});
-                console.log(4);
+                CKEDITOR.disableAutoInline = true;
+                //window['editor_'+this.zone] = CKEDITOR.inline( "edit-"+this.zone , {customConfig: '/system/modules/editor3/assets/config.js'});
+                //custom config disabled till image brower has been resolved
+                window['editor_'+this.zone] = CKEDITOR.inline( "edit-"+this.zone);
             }
-            console.log(5);
             try{
-                CKFinder.setupCKEditor( window['editor_'+this.zone], { basePath : '/site/modules/media/assets/', skin : 'v1' });
+                //CKFinder.setupCKEditor( window['editor_'+this.zone], { basePath : '/site/modules/media/assets/', skin : 'v1' });
             }catch(e){
                 //ignore, ckfinder is not installed
             }

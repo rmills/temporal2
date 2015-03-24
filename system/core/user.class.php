@@ -156,13 +156,12 @@ class User {
             $trace = debug_backtrace();
             $key = $trace[2]['class'];
         }
-
+        
         if($this->_super_user == 'yes'){
             return true;
         }
-        
         foreach($this->_permissions as $v){
-            //echo trim(strtolower($v)).':'.trim(strtolower($key)).'<br>';
+            //echo trim(strtolower($v)).':'.trim(strtolower($key)).PHP_EOL;
             if(trim(strtolower($v)) == trim(strtolower($key))){
                 return true;
             }

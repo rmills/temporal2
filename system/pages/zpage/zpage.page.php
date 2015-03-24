@@ -14,14 +14,16 @@ class Zpage extends Page {
     );
 
     public static function __registar_callback() {
-
-        if (\CMS::allowed()) {
+        if (\CMS::allowed() ) {
             \CMS::callstack_add('check_url', 10);
             if ( \CMS::$_vars[0] == 'update_zone' && !is_null( filter_input( INPUT_POST, 'zone_data', FILTER_UNSAFE_RAW) ) ) {
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
                 \CMS::callstack_add('update', DEFAULT_CALLBACK_PARSE);
             }
+        }
+        
+        if (\CMS::allowed('module/editor3') ) {
             if (\CMS::$_vars[0] == 'zone_history' && !is_null( filter_input(INPUT_POST ,'zone', FILTER_SANITIZE_STRING) ) && !is_null(filter_input(INPUT_POST ,'pid', FILTER_SANITIZE_NUMBER_INT) ) ){
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
@@ -31,6 +33,12 @@ class Zpage extends Page {
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
                 \CMS::callstack_add('zone_history_data', DEFAULT_CALLBACK_PARSE);
+            }
+        }else{
+            if ( \CMS::$_vars[0] == 'update_zone' && !is_null( filter_input( INPUT_POST, 'zone_data', FILTER_UNSAFE_RAW) ) ) {
+                \CMS::$_content_type = 'json';
+                \CMS::$_page_type = 'zpage';
+                \Json::$_body .= json_encode(array('status' => 'fail'));
             }
         }
     }

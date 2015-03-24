@@ -777,8 +777,8 @@ class CMS {
      * to check.
      * @return bool
      */
-    public static function allowed() {
-        return self::$_user->allowed();
+    public static function allowed($key=false) {
+        return self::$_user->allowed($key);
     }
     
     /**
