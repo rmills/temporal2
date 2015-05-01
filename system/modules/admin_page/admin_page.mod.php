@@ -7,6 +7,7 @@ class Admin_page extends Module {
     private static $_pagemode = false;
     private static $_status = false;
     private static $_restricted_url = array('admin', 'edit', 'page', 'login', 'logout');
+    private static $_new_page_added = false;
 
     public static function __registar_callback() {
         if (\CMS::allowed()) {
@@ -46,7 +47,15 @@ class Admin_page extends Module {
             }
         }
 
-
+        /* Post Action Handlers */
+        if (\CMS::$_vars[3] == 'submit') {
+            switch (\CMS::$_vars[2]) {
+                case 'add':
+                    self::add_page_submit();
+                    break;
+            }
+        }
+        
         /* Page Content Handlers */
         switch (\CMS::$_vars[2]) {
             case 'add':
@@ -89,16 +98,7 @@ class Admin_page extends Module {
                 self::permanently_remove_page();
                 break;
         }
-
-
-        /* Post Action Handlers */
-        if (\CMS::$_vars[3] == 'submit') {
-            switch (\CMS::$_vars[2]) {
-                case 'add':
-                    self::add_page_submit();
-                    break;
-            }
-        }
+        
 
         if (self::$_status) {
             \Html::set('{status}', self::$_status);
@@ -110,34 +110,41 @@ class Admin_page extends Module {
         \Html::set('{admin_content}', $html);
         \Html::set('{templates}', self::build_template_list('option_list'));
         \Html::set('{parent}', self::build_parent_list(false));
+        if(!self::$_new_page_added){
+            if (isset($_POST['title'])) {
+                \Html::set('{settitle}', $_POST['title']);
+            } else {
+                \Html::set('{settitle}');
+            }
 
-        if (isset($_POST['title'])) {
-            \Html::set('{settitle}', $_POST['title']);
-        } else {
+            if (isset($_POST['menu_title'])) {
+                \Html::set('{menu_title}', $_POST['menu_title']);
+            } else {
+                \Html::set('{menu_title}');
+            }
+
+            if (isset($_POST['menu_weight'])) {
+                \Html::set('{menu_weight}', $_POST['menu_weight']);
+            } else {
+                \Html::set('{menu_weight}', 100);
+            }
+
+            if (isset($_POST['publish'])) {
+                \Html::set('{publish}', 'checked="checked"');
+            } else {
+                \Html::set('{publish}');
+            }
+
+            if (isset($_POST['url'])) {
+                \Html::set('{seturl}', $_POST['url']);
+            } else {
+                \Html::set('{seturl}');
+            }
+        }else{
             \Html::set('{settitle}');
-        }
-
-        if (isset($_POST['menu_title'])) {
-            \Html::set('{menu_title}', $_POST['menu_title']);
-        } else {
             \Html::set('{menu_title}');
-        }
-
-        if (isset($_POST['menu_weight'])) {
-            \Html::set('{menu_weight}', $_POST['menu_weight']);
-        } else {
             \Html::set('{menu_weight}', 100);
-        }
-
-        if (isset($_POST['publish'])) {
-            \Html::set('{publish}', 'checked="checked"');
-        } else {
             \Html::set('{publish}');
-        }
-
-        if (isset($_POST['url'])) {
-            \Html::set('{seturl}', $_POST['url']);
-        } else {
             \Html::set('{seturl}');
         }
         \Html::set('{status}');
@@ -195,7 +202,7 @@ class Admin_page extends Module {
             self::init_zone('z' . $i, $new_page_id);
             $i++;
         }
-
+        self::$_new_page_added = true;
         self::$_status = '<p class="alert alert-success"><i class="icon icon-ok"></i> Page Created</p><p><a class="btn btn-info" href="{root_doc}' . $url . '">View Page</a></p>';
     }
 

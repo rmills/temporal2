@@ -82,7 +82,7 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
-insert  into `groups`(`id`,`modules`,`name`) values (1,'module\\editor,page\\login,page\\register,page\\zpage,page\\resetpass','public'),(2,'page\\login,page\\profile,page\\zpage','loggedin'),(3,'module\\media,module\\admin_bar,module\\admin_page,module\\admin_permissions,module\\editor2,module\\editor_raw,page\\admin','Editors');
+insert  into `groups`(`id`,`modules`,`name`) values (1,'page\\login,page\\register,page\\zpage,page\\resetpass','public'),(2,'page\\login,page\\profile,page\\zpage','loggedin'),(3,'module\\media,module\\admin_bar,module\\admin_page,module\\admin_permissions,module\\editor2,module\\editor_raw,page\\admin','Editors');
 
 DROP TABLE IF EXISTS `images`;
 
