@@ -159,7 +159,11 @@ class Zpage extends Page {
     private static function mount_zones() {
         foreach (self::$_zonestack as $v) {
             if (is_numeric(self::$_data[$v])) {
-                self::$_data[$v] = self::fetch_zone(self::$_data[$v]);
+                $data = self::fetch_zone(self::$_data[$v]);
+                if(!$data){
+                   $data = '<p>Blank Zone</p>'; 
+                }
+                self::$_data[$v] = $data;
             }
         }
     }
@@ -176,6 +180,7 @@ class Zpage extends Page {
                 return urldecode($item['z_data']);
             }
         }
+        return false;
     }
 
     private static function display_404() {
