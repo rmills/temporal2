@@ -192,11 +192,10 @@ class Admin_page extends Module {
                 \'' . \DB::clean($menu_title) . '\',
                 \'' . \DB::clean($parent) . '\',
                 \'' . \DB::clean($publish) . '\'
-                
-		)';
+            )';
         \DB::q($sql);
         $new_page_id = \DB::$_lastid;
-
+        
         $i = 1;
         while ($i <= MAX_ZONES) {
             self::init_zone('z' . $i, $new_page_id);
@@ -397,24 +396,35 @@ class Admin_page extends Module {
     }
 
     public static function init_zone($zid, $pid) {
-        $zdate = date("m-d-Y");
-        $zdata = 'New Editable Zone';
+        \DB::$_lastid = false;
         $sql = '
-		INSERT INTO zones (
-			`z_data`,
-			`z_creation`
-		) VALUES (
-			\'' . \DB::clean($zdata) . '\',
-			\'' . $zdate . '\'
-		)';
+            INSERT INTO zones (
+                    `z_data`,
+                    `z_date`,
+                    `z_pid`,
+                    `z_parent`,
+                    `z_user`
+                    
+            ) VALUES (
+                    \'New Editable Zone\',
+                    \'' . time() . '\',
+                    \'' . \DB::clean($pid) . '\',
+                    \'' . \DB::clean($zid) . '\',
+                    \'' . \DB::clean(\CMS::$_user->_uid) . '\'
+                        
+            )';
         \DB::q($sql);
-
+        
+        if(!\DB::$_lastid ){
+            die('Contact Admin - Database table error: '.\DB::$_lasterror);
+        }
+        
         $sql = '
-			UPDATE `pages` SET 
-				`' . \DB::clean($zid) . '` = \'' . \DB::clean(\DB::$_lastid) . '\'
-			WHERE 
-				`pid` = \'' . \DB::clean($pid) . '\' 
-			LIMIT 1
+            UPDATE `pages` SET 
+                    `' . \DB::clean($zid) . '` = \'' . \DB::clean(\DB::$_lastid) . '\'
+            WHERE 
+                    `pid` = \'' . \DB::clean($pid) . '\' 
+            LIMIT 1
 		';
         \DB::q($sql);
     }
