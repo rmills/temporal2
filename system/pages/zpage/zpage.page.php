@@ -95,7 +95,7 @@ class Zpage extends Page {
         }
         \Page\Admin::add_quick_link('<li><a href="{root_doc}admin/page/edit/' . self::$_pid . '">Edit Page</a></li>');
         \CMS::log('Zpage', 'loading page "' . self::$_data['pid'] . '"');
-        self::mount_zones();
+        self::mount_zones(self::$_pid);
         if(\CMS::$_user->_uid == DEFAULT_USER){
             \CMS::$_cacheable = true;
             \CMS::$_cacheblock = false;
@@ -156,24 +156,28 @@ class Zpage extends Page {
         }
     }
 
-    private static function mount_zones() {
+    private static function mount_zones($pid) {
         foreach (self::$_zonestack as $v) {
             if (is_numeric(self::$_data[$v])) {
-                $data = self::fetch_zone(self::$_data[$v]);
+                $data = self::fetch_zone($pid, self::$_data[$v]);
                 if(!$data){
-                   $data = '<p>Blank Zone</p>'; 
+                   /** Ignore and dont add data, editors should do this on toggle
+                    $data = '<p>Blank Zone</p>'; 
+                    
+                    */
+                    self::$_data[$v] = '';
                 }
                 self::$_data[$v] = $data;
             }
         }
     }
 
-    private static function fetch_zone($z_id) {
+    private static function fetch_zone($pid, $z_id) {
         if (!is_numeric($z_id)) {
             return false;
         }
         $z_id = trim($z_id);
-        $sql = 'SELECT z_data FROM `zones` WHERE `z_id` = \'' . \DB::clean($z_id) . '\' LIMIT 1;';
+        $sql = 'SELECT z_data FROM `zones` WHERE `z_pid` = \'' . \DB::clean($pid) . '\' AND `z_id` = \'' . \DB::clean($z_id) . '\' LIMIT 1;';
         $response = \DB::q($sql);
         if (is_array($response)) {
             foreach ($response as $item) {

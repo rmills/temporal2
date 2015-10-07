@@ -196,11 +196,13 @@ class Admin_page extends Module {
         \DB::q($sql);
         $new_page_id = \DB::$_lastid;
         
+        /* Disable zone init for now, by doing this we cant have blank zone. Editors should add text when toggled on.
         $i = 1;
         while ($i <= MAX_ZONES) {
             self::init_zone('z' . $i, $new_page_id);
             $i++;
         }
+        * */
         self::$_new_page_added = true;
         self::$_status = '<p class="alert alert-success"><i class="icon icon-ok"></i> Page Created</p><p><a class="btn btn-info" href="{root_doc}' . $url . '">View Page</a></p>';
     }

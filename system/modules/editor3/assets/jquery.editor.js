@@ -163,7 +163,7 @@
                 window['editor_'+this.zone] = CKEDITOR.inline( "edit-"+this.zone);
             }
             try{
-                //CKFinder.setupCKEditor( window['editor_'+this.zone], { basePath : '/site/modules/media/assets/', skin : 'v1' });
+                CKFinder.setupCKEditor( window['editor_'+this.zone], { basePath : '/site/modules/media/assets/', skin : 'v1' });
             }catch(e){
                 //ignore, ckfinder is not installed
             }
