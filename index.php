@@ -10,8 +10,30 @@ try{
     //ignore, rare case
 }
 
+
 /* Local Config */
 date_default_timezone_set('America/Los_Angeles');
+
+
+/* Early load for user id */
+require 'system/core/crypto.class.php';
+if(!isset($_COOKIE['_tx'])){
+    $key = \Crypto::random_filename(20);
+    setcookie('_tx', $key, time() + (10 * 365 * 24 * 60 * 60));
+    $_COOKIE["_tx"] = $key;
+}
+
+if(is_null($_COOKIE['_tx'])){
+    $key = \Crypto::random_filename(20);
+    setcookie('_tx', $key, time() + (10 * 365 * 24 * 60 * 60));
+    $_COOKIE["_tx"] = $key;
+}
+
+if(!isset( $_SESSION["_txs"] )){
+    $_SESSION["_txs"] = \Crypto::random_filename(20);
+}
+
+
 
 /* Primary Includes */
 
@@ -48,7 +70,6 @@ if(ENABLE_DEBUG){
 /* Secondary Includes */
 require 'system/core/sitedebug.class.php';
 require 'system/core/autodb.class.php';
-require 'system/core/crypto.class.php';
 require 'system/core/db.class.php';
 require 'system/core/cms.class.php';
 require 'system/core/module.class.php';
@@ -67,18 +88,6 @@ if(ENABLE_MAIL){
     require_once('system/core/phpmail/class.phpmailer.php');
 }
 
-if(!is_null( filter_input(INPUT_COOKIE ,'_tx', FILTER_SANITIZE_STRING) )){
-    $key = \Crypto::random_filename(20);
-    setcookie('_tx', $key, time() + (10 * 365 * 24 * 60 * 60));
-    /**
-     * May not be needed
-     * $_COOKIE["_tx"] = $key;
-     */
-    
-}
-if(!isset( $_SESSION["_txs"] )){
-    $_SESSION["_txs"] = \Crypto::random_filename(20);
-}
 
 \DB::init();
 
