@@ -106,5 +106,16 @@ class Module {
             }
         }
     }
+    
+    /**
+     * Check if a user has access to a module
+     * @return boolean
+     */
+    static function check_allow(){
+        if (\CMS::allowed()) {
+            return true;
+        }
+        return false;
+    }
 
 }

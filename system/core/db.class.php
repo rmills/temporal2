@@ -120,6 +120,21 @@ class DB {
         return $data;
     }
     
+    public static function fetch_fields($table){
+        /** store query for debug * */
+        $sql = 'SHOW columns FROM '.self::clean($table);
+        self::$__querys[] = $sql;
+        $result = mysqli_query(self::$__connection, $sql);
+        $data = array();
+        if ($result) {
+            while ($r = $result->fetch_assoc()) {
+                $data[] = $r;
+            }
+            $result->close();
+        }
+        return $data;
+    }
+    
     /**
      * Sanitise user input for SQL querys, not binary safe
      * @param string $input

@@ -242,5 +242,30 @@ class Html {
             die();
         }
     }
+    
+    /**
+     * Format plain html text and turn hard returns to <br>
+     * @param string $string
+     * @return html
+     */
+    public static function format_paragraph_text($string){
+        return nl2br($string, true);
+    }
+    
+    /**
+     * Format int to pretty phone number
+     * @param int $int
+     * @return string
+     */
+    public static function format_phone($int){
+        switch( strlen($int) ){
+            case 10:
+                return '('.$int[0].$int[1].$int[2].') '.$int[3].$int[4].$int[5].'-'.$int[6].$int[7].$int[8].$int[9];
+            case 7:
+                return $int[0].$int[1].$int[2].'-'.$int[3].$int[4].$int[5].$int[6];
+            default:
+                return $int;
+        }
+    }
 
 }
