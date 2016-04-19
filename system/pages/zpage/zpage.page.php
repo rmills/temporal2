@@ -109,6 +109,7 @@ class Zpage extends Page {
                 \Html::set('{' . $key . '}', $value);
             }
         }
+        \Html::set('{page_url}', self::$_data['url']);
     }
 
     public static function output() {
