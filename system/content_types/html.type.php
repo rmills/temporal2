@@ -227,6 +227,26 @@ class Html {
     }
     
     /**
+     * Returns a templates contents
+     * @param type $file filename
+     * @return html returns template if found, false if not found
+     */
+    public static function fetch_template($file = false) {
+        if ($file) {
+            $path = CMS::$_config['path_layout'] . $file;
+        } else {
+            $path = CMS::$_config['path_layout_default'];
+        }
+        if (is_file($path)) {
+            self::$_hascontent = true;
+            return file_get_contents($path);
+        } else {
+            CMS::log('Body', 'Could not find template: ' . $path, 2);
+            return false;
+        }
+    }
+    
+    /**
      * Output 404 message
      */
     public static function error_404($die = false){
