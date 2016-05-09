@@ -85,9 +85,10 @@ class Admin extends Page {
     public static function build_welcome() {
         $html = \Html::fetch_template('_admin_home.html');
         if(!$html){
-            $html = '<h1>Welcome to Temporal Site Management</h1>';
+            \Html::set('{admin_content}', self::block('admin_home.html'));
+        }else{
+            \Html::set('{admin_content}', $html);
         }
-        \Html::set('{admin_content}', $html);
     }
 
 }

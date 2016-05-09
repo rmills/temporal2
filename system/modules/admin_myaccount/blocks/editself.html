@@ -1,0 +1,28 @@
+<h1>My Account</h1>
+{status}
+<div id="users-form">
+    <form class="form-horizontal" id="pageform" action="{root_doc}admin/admin_myaccount/submit" method="post">
+        <div class="form-group">
+            <label for="email">Email: </label>
+            <input class="form-control input required email" size="20" type="text" id="email" name="email" placeholder="Email Address" value="{setemail}">
+            <span class="help-block">*this will be your login</span>
+        </div>
+        <div class="form-group">
+            <label for="name">Full Name: </label>
+            <input class="form-control input required" size="20" type="text" id="name" placeholder="Full Name" name="name" value="{setname}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password: </label>
+            <input class="form-control input password" size="20" type="password" id="password" placeholder="Password" name="password">
+            <span class="help-block">*leave password blank not to change</span>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password: </label>
+            <input class="form-control input password" size="20" type="password" id="confirm_password" placeholder="Password" name="confirm_password">
+        </div>
+        <p>&nbsp;</p>
+        <div class="form-controls">
+            <input class="btn btn-info" type="submit" value="Update User" />  <a class="btn btn-warning" href="{root_doc}">Cancel</a>
+        </div>
+    </form>
+</div>

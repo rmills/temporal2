@@ -17,6 +17,11 @@ class Admin_user extends Module {
             } else {
                 \CMS::callstack_add('set_nav', DEFAULT_CALLBACK_CREATE);
             }
+            
+            $blocks = array();
+            $blocks[] = new \Module\AdminHomeBlock('Add User', '/admin/user/add', 'fa-users');
+            $blocks[] = new \Module\AdminHomeBlock('List Users', '/admin/user/list', 'fa-list');
+            \Module\Admin_home_blocks::add('Users', $blocks, 1100);
         }
     }
 

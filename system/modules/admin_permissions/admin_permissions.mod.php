@@ -16,6 +16,10 @@ class Admin_permissions extends Module{
             } else {
                 \CMS::callstack_add('set_nav', DEFAULT_CALLBACK_CREATE);
             }
+            $blocks = array();
+            $blocks[] = new \Module\AdminHomeBlock('Add Group', '/admin/permissions/add', 'fa-users');
+            $blocks[] = new \Module\AdminHomeBlock('List Groups', '/admin/permissions/list', 'fa-list');
+            \Module\Admin_home_blocks::add('Permissions', $blocks, 1200);
         }
     }
 

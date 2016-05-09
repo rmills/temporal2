@@ -18,6 +18,10 @@ class Admin_page extends Module {
             } else {
                 \CMS::callstack_add('set_nav', DEFAULT_CALLBACK_CREATE);
             }
+            $blocks = array();
+            $blocks[] = new \Module\AdminHomeBlock('Create New Page', '/admin/page/add', 'fa-file-text-o');
+            $blocks[] = new \Module\AdminHomeBlock('List Pages', '/admin/page/list', 'fa-list');
+            \Module\Admin_home_blocks::add('Pages', $blocks, 1000);
         }
     }
 
