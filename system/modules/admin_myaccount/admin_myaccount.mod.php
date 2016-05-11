@@ -3,7 +3,7 @@
 namespace Module;
 
 class Admin_myaccount extends Module {
-
+    public static $_isrestricted = true;
     private static $_pagemode = false;
     private static $_status = array();
 
