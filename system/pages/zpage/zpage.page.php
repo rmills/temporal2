@@ -23,7 +23,7 @@ class Zpage extends Page {
             }
         }
         
-        if (\CMS::allowed('module/editor3') ) {
+        if (\CMS::allowed('module\editor3') ) {
             if (\CMS::$_vars[0] == 'zone_history' && !is_null( filter_input(INPUT_POST ,'zone', FILTER_SANITIZE_STRING) ) && !is_null(filter_input(INPUT_POST ,'pid', FILTER_SANITIZE_NUMBER_INT) ) ){
                 \CMS::$_content_type = 'json';
                 \CMS::$_page_type = 'zpage';
