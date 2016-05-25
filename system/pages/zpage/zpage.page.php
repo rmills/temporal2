@@ -48,7 +48,10 @@ class Zpage extends Page {
     }
 
     public static function check_url() {
-
+        if(self::check_addon_page(\CMS::$_vars[0])){
+            return false;
+        }
+        
         $found = false;
         if (\CMS::$_vars[0] == '' && DEFAULT_PAGE_GUEST == 'Zpage') {
             $found = true;
@@ -148,7 +151,7 @@ class Zpage extends Page {
     }
     
     public static function reg_page_list() {
-        $sql = 'SELECT `url` FROM `pages` WHERE `status` = \'active\' AND `place_holder_only` = \'0\'';
+        $sql = 'SELECT `url` FROM `pages`';
         $response = \DB::q($sql);
         if (is_array($response)) {
             foreach ($response as $item) {
@@ -267,6 +270,15 @@ class Zpage extends Page {
      
         \Json::$_body .= json_encode($stack);
     }
-
+    
+    
+    private static function check_addon_page($url){
+        foreach(\CMS::$__pages as $v){
+            if($v[1] == strtolower($url)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
