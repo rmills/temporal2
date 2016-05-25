@@ -148,7 +148,7 @@ class Zpage extends Page {
     }
     
     public static function reg_page_list() {
-        $sql = 'SELECT `url` FROM `pages`';
+        $sql = 'SELECT `url` FROM `pages` WHERE `status` = \'active\' AND `place_holder_only` = \'0\'';
         $response = \DB::q($sql);
         if (is_array($response)) {
             foreach ($response as $item) {
