@@ -60,11 +60,10 @@
                 cache: false
             }).done(function( responce ) {
                 for (x in responce){
-                    var d = new Date(0);
-                    d.setUTCSeconds(responce[x].z_date);
+                    var d = new Date(1000*responce[x].z_date);
                     $('#editor-history_'+responce[x].z_parent).append($("<option/>", { 
                         value: responce[x].z_id,
-                        text : d.getMonth()+"/"+d.getDate()+"/"+d.getFullYear()+" "+d.getHours()+":"+d.getMinutes()+" "+responce[x].username
+                        text : d.toLocaleString()+" | "+responce[x].username
                     }));
                 }
             });
