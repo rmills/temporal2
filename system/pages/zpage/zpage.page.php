@@ -14,6 +14,7 @@ class Zpage extends Page {
     );
 
     public static function __registar_callback() {
+        \CMS::callstack_add('reg_page_list', DEFAULT_CALLBACK_CREATE);
         if (\CMS::allowed() ) {
             \CMS::callstack_add('check_url', 10);
             if ( \CMS::$_vars[0] == 'update_zone' && !is_null( filter_input( INPUT_POST, 'zone_data', FILTER_UNSAFE_RAW) ) ) {
@@ -73,7 +74,6 @@ class Zpage extends Page {
             \CMS::callstack_add('parse', DEFAULT_CALLBACK_PARSE);
         }
         \CMS::callstack_add('output', DEFAULT_CALLBACK_OUTPUT);
-        \CMS::callstack_add('reg_page_list', DEFAULT_CALLBACK_CREATE);
     }
 
     public static function create() {
@@ -151,7 +151,7 @@ class Zpage extends Page {
     }
     
     public static function reg_page_list() {
-        $sql = 'SELECT `url` FROM `pages`';
+        $sql = 'SELECT `url` FROM `pages` WHERE `status` = \'active\'';
         $response = \DB::q($sql);
         if (is_array($response)) {
             foreach ($response as $item) {
