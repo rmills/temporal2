@@ -613,11 +613,11 @@ class Image {
         $type = strtolower(pathinfo($imagepath, PATHINFO_EXTENSION));
         switch ($type) {
             case 'jpg':
-                $temp_image = imagecreatefromjpeg($imagepath);
+                $temp_image = @imagecreatefromjpeg($imagepath);
                 break;
             
             case 'jpeg':
-                $temp_image = imagecreatefromjpeg($imagepath);
+                $temp_image = @imagecreatefromjpeg($imagepath);
                 break;
             
             case 'bmp':
@@ -625,11 +625,11 @@ class Image {
                 break;
 
             case 'png':
-                $temp_image = imagecreatefrompng($imagepath);
+                $temp_image = @imagecreatefrompng($imagepath);
                 break;
 
             case 'gif':
-                $temp_image = imagecreatefromgif($imagepath);
+                $temp_image = @imagecreatefromgif($imagepath);
                 break;
         }
 
@@ -648,27 +648,27 @@ class Image {
         }
 
         $new_image = imagecreatetruecolor($size, $size);
-        imagecopyresampled($new_image, $temp_image, 0, 0, $x_offset, $y_offset, $size, $size, $square_size, $square_size);
+        @imagecopyresampled($new_image, $temp_image, 0, 0, $x_offset, $y_offset, $size, $size, $square_size, $square_size);
 
         switch ($type) {
             case 'jpg':
-                imagejpeg($new_image, $imagepath, $q);
+                @imagejpeg($new_image, $imagepath, $q);
                 break;
             
             case 'jpeg':
-                imagejpeg($new_image, $imagepath, $q);
+                @imagejpeg($new_image, $imagepath, $q);
                 break;
 
             case 'bmp':
-                imagewbmp($new_image, $imagepath);
+                @imagewbmp($new_image, $imagepath);
                 break;
 
             case 'png':
-                imagepng($new_image, $imagepath, 0);
+                @imagepng($new_image, $imagepath, 0);
                 break;
 
             case 'gif':
-                imagegif($new_image, $imagepath);
+                @imagegif($new_image, $imagepath);
                 break;
         }
 

@@ -83,7 +83,7 @@ if(!defined('PATH_LAYOUT_ROOT_ADDON')){
 
 //Default html if no page is found
 if(!defined('LAYOUT_DEFAULT')){
-    define('LAYOUT_DEFAULT', '_firstload.html');
+    define('LAYOUT_DEFAULT', 'default.html');
 }
 
 //Path to module folder
