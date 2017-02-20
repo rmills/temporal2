@@ -613,7 +613,11 @@ class Image {
         $type = strtolower(pathinfo($imagepath, PATHINFO_EXTENSION));
         switch ($type) {
             case 'jpg':
-                $temp_image = @imagecreatefromjpeg($imagepath);
+                if($_SERVER['REMOTE_ADDR'] == '50.243.100.169'){
+                    $temp_image = imagecreatefromjpeg($imagepath);
+                }else{
+                    $temp_image = @imagecreatefromjpeg($imagepath);
+                }
                 break;
             
             case 'jpeg':

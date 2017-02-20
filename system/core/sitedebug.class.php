@@ -24,8 +24,8 @@ class SiteDebug{
             $bug_details['msg'] = \DB::clean($msg);
             $bug_details['time'] = time();
 
-            $bug = new AutoDB('site_debug');
-            $bug->init($bug_details);
+            //$bug = new AutoDB('site_debug');
+            //$bug->init($bug_details);
         }
     }
 }
