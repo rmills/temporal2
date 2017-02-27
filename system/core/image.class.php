@@ -28,7 +28,7 @@ class Image {
     /**
      * @var string filename 
      */
-    private $_file = false;
+    public $_file = false;
     
     /**
      *
