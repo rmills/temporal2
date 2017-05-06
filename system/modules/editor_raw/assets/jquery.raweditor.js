@@ -19,7 +19,7 @@
             var post_data = {
                 zone_data: $("#editor-"+this.zone).val()
             };
-            var post_url = "http://"+$(location).attr('hostname')+"/update_zone/"+this.zone+"/"+this.pid;
+            var post_url = document.location.protocol+"://"+$(location).attr('hostname')+"/update_zone/"+this.zone+"/"+this.pid;
             jQuery.ajax({
                 type: "POST",
                 url: post_url,
@@ -43,7 +43,7 @@
                 zone: this.zone,
                 pid: this.pid
             };
-            var post_url = "http://"+$(location).attr('hostname')+"/zone_history/"
+            var post_url = document.location.protocol+"://"+$(location).attr('hostname')+"/zone_history/"
             jQuery.ajax({
                 type: "POST",
                 url: post_url,
@@ -67,7 +67,7 @@
             var post_data = {
                 z_id: zid
             };
-            var post_url = "http://"+$(location).attr('hostname')+"/zone_history_data/"
+            var post_url = document.location.protocol+"://"+$(location).attr('hostname')+"/zone_history_data/"
             jQuery.ajax({
                 type: "POST",
                 url: post_url,
