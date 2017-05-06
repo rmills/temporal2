@@ -25,6 +25,11 @@ if(!defined('ALLOW_DB_DEBUG')){
     define('ALLOW_DB_DEBUG', false);
 }
 
+if(!defined('BOOTSTRAP_VERSION')){
+    define('BOOTSTRAP_VERSION', 3);
+}
+
+
 if(!defined('SITE_NAME')){
     define('SITE_NAME', 'Temporal'); // Name of your site
 }

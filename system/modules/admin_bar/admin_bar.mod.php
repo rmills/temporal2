@@ -25,7 +25,16 @@ class Admin_bar extends Module {
     }
 
     public static function build_admin_bar() {
-        $html = self::block('adminbar.html');
+        switch(BOOTSTRAP_VERSION){
+            case 2:
+                 $html = self::block('adminbar_bootstrap2.html');
+                break;
+            case 3:
+                 $html = self::block('adminbar_bootstrap2.html');
+                break;
+            default:
+                die('ONLY BOOTSTRAP 2 & 3 SUPPORTED');
+        }
         return $html;
     }
 }
