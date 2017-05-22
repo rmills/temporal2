@@ -30,7 +30,7 @@ class Admin_bar extends Module {
                  $html = self::block('adminbar_bootstrap2.html');
                 break;
             case 3:
-                 $html = self::block('adminbar_bootstrap2.html');
+                 $html = self::block('adminbar_bootstrap3.html');
                 break;
             default:
                 die('ONLY BOOTSTRAP 2 & 3 SUPPORTED');
