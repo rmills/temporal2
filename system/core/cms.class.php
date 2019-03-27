@@ -699,7 +699,7 @@ class CMS {
      */
     public static function log($module, $details, $level = 0) {
         self::$__log[] = array(
-            ( microtime() - BUILD_TIME ),
+            ( intval(microtime()) - intval(BUILD_TIME) ),
             $module,
             $details,
             $level
